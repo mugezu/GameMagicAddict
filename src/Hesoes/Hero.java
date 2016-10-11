@@ -3,6 +3,7 @@ package Hesoes;
 import Attack.TypeBuffDebuff;
 import Battle.Fight;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,7 +11,7 @@ import java.util.Random;
 /**
  * Created by user on 12.09.2016.
  */
-public abstract class Hero {
+public abstract class Hero implements Serializable {
     protected final int quantitySlotSkill = 6;
     String name = null;
     protected int step = 0;
@@ -50,7 +51,7 @@ public abstract class Hero {
     protected void help() {
         slotSkill.add(0);
         slotSkill.add(1);
-       slotSkill.add(3);
+        slotSkill.add(3);
         slotSkill.add(4);
         hp = 100 * stamina;
         mp = 50 * spirit;

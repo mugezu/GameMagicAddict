@@ -22,7 +22,7 @@ public class AttackEnemyMage extends AttackEnemy {
                 {30, 40, 50},
                 {4, 5, 6, 7, 8, 9},
                 {100},
-                {30,0}};
+                {30, 0}};
 
         damageLists = new ArrayList<ArrayList>();
         for (int i = 0; i < stroka.length; i++) {
@@ -37,7 +37,7 @@ public class AttackEnemyMage extends AttackEnemy {
                 {TypeAttack.Point, TypeAttack.Point, TypeAttack.Mass},
                 {TypeAttack.Point, TypeAttack.Point, TypeAttack.Point, TypeAttack.Point, TypeAttack.Point, TypeAttack.Point},
                 {TypeAttack.PointFriend},
-                {TypeAttack.Point,TypeAttack.HimSelf}
+                {TypeAttack.Point, TypeAttack.HimSelf}
         };
 
         typesAttack = new ArrayList<ArrayList>();
@@ -55,7 +55,7 @@ public class AttackEnemyMage extends AttackEnemy {
                 {TypeBuffDebuff.None, TypeBuffDebuff.None, TypeBuffDebuff.None},
                 {TypeBuffDebuff.None, TypeBuffDebuff.None, TypeBuffDebuff.None, TypeBuffDebuff.None, TypeBuffDebuff.None, TypeBuffDebuff.None},
                 {TypeBuffDebuff.None},
-                {TypeBuffDebuff.debuffAgillity,TypeBuffDebuff.buffAgillity}
+                {TypeBuffDebuff.debuffAgillity, TypeBuffDebuff.buffAgillity}
         };
 
         typesEffect = new ArrayList<ArrayList>();
