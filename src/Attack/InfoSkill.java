@@ -1,21 +1,22 @@
 package Attack;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by user on 13.09.2016.
  */
-public class InfoSkill {
+public class InfoSkill implements Serializable {
     private int number;
     private int level;
     private String name;
     private String info = null;
     private int rank;
     private int manaCost;
-    private ArrayList<Integer> damage = new ArrayList<>();
-    private ArrayList<TypeAttack> typeAttack = new ArrayList<>();
-    private ArrayList<TypeBuffDebuff>   effeckt=new ArrayList<>();;
+    private List<Integer> damage = new ArrayList<>();
+    private List<TypeAttack> typeAttack = new ArrayList<>();
+    private List<TypeBuffDebuff>   effeckt=new ArrayList<>();;
     private Integer time;
 
     public InfoSkill(int number, int level, String name, String info, int rank, int manaCost, ArrayList<Integer> damage, ArrayList<TypeAttack> typeAttack, ArrayList<TypeBuffDebuff> effeckt, int time) {
@@ -66,11 +67,11 @@ public class InfoSkill {
         this.rank = rank;
     }
 
-    public ArrayList<TypeBuffDebuff> getEffeckt() {
+    public List<TypeBuffDebuff> getEffeckt() {
         return effeckt;
     }
 
-    public void setEffeckt(ArrayList<TypeBuffDebuff> effeckt) {
+    public void setEffeckt(List<TypeBuffDebuff> effeckt) {
         this.effeckt = effeckt;
     }
 

@@ -16,16 +16,16 @@ public class Main {
         Hero ass = new EnemyMage("Враг1");
         Hero Lenya1 = new Mage("Lenya1");
         Hero ass1 = new EnemyMage("Враг2");
-        /*ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("Save.txt")));
+        ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("Save.bin")));
         out.writeObject(Lenya);
         out.close();
         ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(
-                new FileInputStream("Save.txt")));
+                new FileInputStream("Save.bin")));
         Hero Roma;
         Roma=(Hero)in.readObject();
         in.close();
         System.out.println(Roma.getName());
-        Roma.listAttack();*/
+        Roma.listAttack();
         List<Hero> heroes = new ArrayList<>();
         heroes.add(Lenya);
         heroes.add(Lenya1);

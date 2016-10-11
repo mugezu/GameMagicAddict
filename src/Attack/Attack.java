@@ -13,7 +13,6 @@ public abstract class Attack {
     protected Hero our;
     protected List<Hero> enemy;
     protected List<Hero> herous;
-    protected int id;
     //переменная с инфой про скиллы
     protected List<InfoSkill> attackInfo = new ArrayList<InfoSkill>();
     List<ArrayList> damageLists;
@@ -28,6 +27,7 @@ public abstract class Attack {
 
     public void attack(int id) {
         Hero target = null;
+        attackInfo.get(id).setManaCost((int)(our.getLevel()*0.5*attackInfo.get(id).getManaCost()));
         System.out.println("Использовано "+ attackInfo.get(id).getName());
         for (int i = 0; i < attackInfo.get(id).getDamageList().size(); i++) {
             switch (attackInfo.get(id).getTypeAttack(i)) {
@@ -248,7 +248,6 @@ public abstract class Attack {
                 }
             } while (flag);
             return targetList.get(target);
-
         }
     }
 

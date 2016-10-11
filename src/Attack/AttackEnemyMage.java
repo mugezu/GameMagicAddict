@@ -22,7 +22,7 @@ public class AttackEnemyMage extends AttackEnemy {
                 {30, 40, 50},
                 {4, 5, 6, 7, 8, 9},
                 {100},
-                {30, 0}};
+                {30,0}};
 
         damageLists = new ArrayList<ArrayList>();
         for (int i = 0; i < stroka.length; i++) {
@@ -37,7 +37,7 @@ public class AttackEnemyMage extends AttackEnemy {
                 {TypeAttack.Point, TypeAttack.Point, TypeAttack.Mass},
                 {TypeAttack.Point, TypeAttack.Point, TypeAttack.Point, TypeAttack.Point, TypeAttack.Point, TypeAttack.Point},
                 {TypeAttack.PointFriend},
-                {TypeAttack.Point, TypeAttack.HimSelf}
+                {TypeAttack.Point,TypeAttack.HimSelf}
         };
 
         typesAttack = new ArrayList<ArrayList>();
@@ -55,7 +55,7 @@ public class AttackEnemyMage extends AttackEnemy {
                 {TypeBuffDebuff.None, TypeBuffDebuff.None, TypeBuffDebuff.None},
                 {TypeBuffDebuff.None, TypeBuffDebuff.None, TypeBuffDebuff.None, TypeBuffDebuff.None, TypeBuffDebuff.None, TypeBuffDebuff.None},
                 {TypeBuffDebuff.None},
-                {TypeBuffDebuff.debuffAgillity, TypeBuffDebuff.buffAgillity}
+                {TypeBuffDebuff.debuffAgillity,TypeBuffDebuff.buffAgillity}
         };
 
         typesEffect = new ArrayList<ArrayList>();
@@ -69,10 +69,10 @@ public class AttackEnemyMage extends AttackEnemy {
             locE = null;
         }
         int i = 0;
-        attackInfo.add(new InfoSkill(1, 1, "Ледяная стрела", "", 1, (int) (27 * our.getLevel() * 0.5), damageLists.get(i), typesAttack.get(i), typesEffect.get(i++), 2));
-        attackInfo.add(new InfoSkill(2, 1, "Огненная глыба", "", 1, (int) (58 * our.getLevel() * 0.5), damageLists.get(i), typesAttack.get(i), typesEffect.get(i++), 10));
-        attackInfo.add(new InfoSkill(3, 4, "Енергетический поток", "", 1, (int) (27 * our.getLevel() * 0.5), damageLists.get(i), typesAttack.get(i++)));
-        attackInfo.add(new InfoSkill(4, 4, "Лечение", "", 1, (int) (27 * our.getLevel() * 0.5), damageLists.get(i), typesAttack.get(i++)));
-        attackInfo.add(new InfoSkill(5, 4, "Подрезать сухожилье", "", 2, (int) (30 * our.getLevel() * 0.5), damageLists.get(i), typesAttack.get(i), typesEffect.get(i++), 2));
+        attackInfo.add(new InfoSkill(1, 1, "Ледяная стрела", "", 1, 27 , damageLists.get(i), typesAttack.get(i), typesEffect.get(i++), 2));
+        attackInfo.add(new InfoSkill(2, 1, "Огненная глыба", "", 1,58 , damageLists.get(i), typesAttack.get(i), typesEffect.get(i++), 10));
+        attackInfo.add(new InfoSkill(3, 4, "Енергетический поток", "", 1, 27 , damageLists.get(i), typesAttack.get(i++)));
+        attackInfo.add(new InfoSkill(4, 4, "Лечение", "", 1, 27 , damageLists.get(i), typesAttack.get(i++)));
+        attackInfo.add(new InfoSkill(5, 4, "Подрезать сухожилье", "", 2, 30 , damageLists.get(i), typesAttack.get(i), typesEffect.get(i++), 2));
     }
 }
