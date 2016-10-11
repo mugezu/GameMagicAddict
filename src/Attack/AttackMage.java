@@ -14,20 +14,21 @@ public class AttackMage extends Attack {
 
     public AttackMage(List<Hero> herous, Hero our, List<Hero> enemy) {
         super(herous, our, enemy);
+      //  fillingInfoAttack();
         fillingInfoAttackFile();
     }
 
     public AttackMage(Hero our) {
         super(our);
+       // fillingInfoAttack();
         fillingInfoAttackFile();
-        //attackInfo.add(new InfoSkill(1,1,"Ледяная стрела","",1));
     }
     protected void fillingInfoAttackFile(){
         ObjectInputStream in =null;
         try{
             in=new ObjectInputStream(new BufferedInputStream(
                     new FileInputStream("AttackMage.bin")));
-
+            attackInfo=(List<InfoSkill>)in.readObject();
         }catch (Exception e){
             e.printStackTrace();
         }
