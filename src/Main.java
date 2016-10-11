@@ -16,7 +16,7 @@ public class Main {
         Hero ass = new EnemyMage("Враг1");
         Hero Lenya1 = new Mage("Lenya1");
         Hero ass1 = new EnemyMage("Враг2");
-        ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("Save.txt")));
+        /*ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("Save.txt")));
         out.writeObject(Lenya);
         out.close();
         ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(
@@ -25,6 +25,7 @@ public class Main {
         Roma=(Hero)in.readObject();
         in.close();
         System.out.println(Roma.getName());
+        Roma.listAttack();*/
         List<Hero> heroes = new ArrayList<>();
         heroes.add(Lenya);
         heroes.add(Lenya1);

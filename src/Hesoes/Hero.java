@@ -120,6 +120,8 @@ public abstract class Hero implements Serializable {
 
     public void listAttack(List<Hero> Herous, List<Hero> enemy) {
     }
+    public void listAttack() {
+    }
 
     public void onEffect(Hero enemy) {
         for (TypeBuffDebuff eff : effeckt) {

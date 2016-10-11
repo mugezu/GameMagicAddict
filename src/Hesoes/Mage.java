@@ -16,7 +16,7 @@ public class Mage extends Hero {
         spirit = 4;
         agillity = 20;
         hit = 20;
-        clas=ClassType.Mage;
+        clas = ClassType.Mage;
         help();
     }
    /* @Override
@@ -29,19 +29,22 @@ public class Mage extends Hero {
     }*/
 
     @Override
-    public void listAttack(List<Hero> heroes,List<Hero> enemy) {
-        if (!this.isOpportunityAttack()){return;}
-            else {
+    public void listAttack(List<Hero> heroes, List<Hero> enemy) {
+        if (!this.isOpportunityAttack()) {
+            return;
+        } else {
             AttackMage tmp = new AttackMage(heroes, this, enemy);
             tmp.listActiveStot();
-          if( tmp.listSkill());
-            else this.battleMenu(heroes,enemy);
-
-
-
+            if (tmp.listSkill()) ;
+            else this.battleMenu(heroes, enemy);
         }
     }
 
-
+    @Override
+    public void listAttack() {
+        AttackMage tmp = new AttackMage(this);
+        tmp.listActiveStot();
+    }
 }
+
 
