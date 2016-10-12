@@ -1,11 +1,10 @@
 import Attack.InfoSkill;
 import Attack.TypeAttack;
 import Attack.TypeBuffDebuff;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -19,7 +18,7 @@ public class SaveInfoSkilIInFile {
     List<ArrayList> typesEffect;
     List<InfoSkill> attackInfo = new ArrayList<>();
     public static void main(String[] args) {
-
+new SaveInfoSkilIInFile().fillingInfoAttackMage();
     }
     public  void fillingInfoAttackMage() {
         Random rand = new Random();
@@ -82,21 +81,23 @@ public class SaveInfoSkilIInFile {
         attackInfo.add(new InfoSkill(4, 4, "Лечение", "", 1, 27, damageLists.get(i), typesAttack.get(i++)));
         attackInfo.add(new InfoSkill(5, 4, "Подрезать сухожилье", "", 2, 30, damageLists.get(i), typesAttack.get(i), typesEffect.get(i++), 2));
 
-        ObjectOutputStream out= null;
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(attackInfo);
+        FileWriter FW = null;
         try {
-            out = new ObjectOutputStream(new BufferedOutputStream
-                    (new FileOutputStream("D:\\AttackMage.bin")));
-            out.writeObject(attackInfo);
-        }catch (Exception e){
+            FW = new FileWriter("D:\\AttackMage.txt",false);
+            FW.write(json);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         finally {
-            if (out!=null)
-                try {
-                    out.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            try {
+                if (FW!=null)
+                    FW.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 }
