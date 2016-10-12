@@ -1,48 +1,27 @@
-package Attack;
+import Attack.InfoSkill;
+import Attack.TypeAttack;
+import Attack.TypeBuffDebuff;
 
-import Hesoes.Hero;
-
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 /**
- * Created by user on 12.09.2016.
+ * Created by user on 12.10.2016.
  */
-public class AttackMage extends Attack {
+public class SaveInfoSkilIInFile {
+    List<ArrayList> damageLists;
+    List<ArrayList> typesAttack;
+    List<ArrayList> typesEffect;
+    List<InfoSkill> attackInfo = new ArrayList<>();
+    public static void main(String[] args) {
 
-    public AttackMage(List<Hero> herous, Hero our, List<Hero> enemy) {
-        super(herous, our, enemy);
-      //  fillingInfoAttack();
-        fillingInfoAttackFile();
     }
-
-    public AttackMage(Hero our) {
-        super(our);
-       // fillingInfoAttack();
-        fillingInfoAttackFile();
-    }
-    protected void fillingInfoAttackFile(){
-        ObjectInputStream in =null;
-        try{
-            in=new ObjectInputStream(new BufferedInputStream(
-                    new FileInputStream("AttackMage.bin")));
-            attackInfo=(List<InfoSkill>)in.readObject();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        finally {
-            if (in!=null)
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-        }
-    }
-
-    protected void fillingInfoAttack() {
+    public  void fillingInfoAttackMage() {
         Random rand = new Random();
 
         Integer stroka[][] = {
@@ -105,7 +84,8 @@ public class AttackMage extends Attack {
 
         ObjectOutputStream out= null;
         try {
-            out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("AttackMage.bin")));
+            out = new ObjectOutputStream(new BufferedOutputStream
+                    (new FileOutputStream("D:\\AttackMage.bin")));
             out.writeObject(attackInfo);
         }catch (Exception e){
             e.printStackTrace();
