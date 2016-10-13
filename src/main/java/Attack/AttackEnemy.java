@@ -38,7 +38,10 @@ public class AttackEnemy extends Attack {
 
     public AttackEnemy(Hero our) {
         super(our);
-        //attackInfo.add(new InfoSkill(1,1,"Ледяная стрела","",1));
+        loadFromFile();
+        for (InfoSkill s: attackInfo) {
+            s.setManaCost((int)(our.getLevel()*s.getManaCost()*0.5));
+        }
     }
 
     public boolean listSkill() {

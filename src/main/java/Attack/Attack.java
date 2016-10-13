@@ -2,11 +2,12 @@ package Attack;
 
 import Hesoes.Hero;
 import Hesoes.util;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import Other.Global;
 
-import java.io.FileReader;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,29 +25,31 @@ public abstract class Attack {
         this.our = our;
         this.enemy = enemy;
         this.herous = herous;
+        loadFromFile();
+        for (InfoSkill s : attackInfo) {
+            s.setManaCost((int) (our.getLevel() * s.getManaCost() * 0.5));
+        }
     }
 
-    public void loadFromFile(){
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        StringBuilder builder = new StringBuilder();
-        FileReader FR = null;
-        int c;
+    public Attack(Hero our) {
+        this.our = our;
+        loadFromFile();
+        for (InfoSkill s : attackInfo) {
+            s.setManaCost((int) (our.getLevel() * s.getManaCost() * 0.5));
+        }
+    }
+
+    public void loadFromFile() {
+        ObjectInputStream out = null;
         try {
-
-            FR = new FileReader("D:\\Attack"+our.getClas()+".txt");
-            while ((c = FR.read()) != -1) {
-                builder.append((char) c);
-            }
-
-            gson.fromJson(builder.toString(), InfoSkill.class);
-
+            out = new ObjectInputStream(new BufferedInputStream(new FileInputStream(Global.currentPath + "\\Attack" + our.getClas() + ".bin")));
+            attackInfo = (List<InfoSkill>) out.readObject();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
-                if (FR!=null)
-                    FR.close();
+                if (out != null)
+                    out.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -56,8 +59,8 @@ public abstract class Attack {
 
     public void attack(int id) {
         Hero target = null;
-        attackInfo.get(id).setManaCost((int)(our.getLevel()*0.5*attackInfo.get(id).getManaCost()));
-        System.out.println("Использовано "+ attackInfo.get(id).getName());
+        attackInfo.get(id).setManaCost((int) (our.getLevel() * 0.5 * attackInfo.get(id).getManaCost()));
+        System.out.println("Использовано " + attackInfo.get(id).getName());
         for (int i = 0; i < attackInfo.get(id).getDamageList().size(); i++) {
             switch (attackInfo.get(id).getTypeAttack(i)) {
                 case Point: {
@@ -180,9 +183,9 @@ public abstract class Attack {
                     }
                     break;
                 }
-                case HimSelf:{
+                case HimSelf: {
                     int value = 0;
-                        target = our;
+                    target = our;
                     if (attackInfo.get(id).getRank() == 1 || attackInfo.get(id).getRank() == 2) {
                         value = attackInfo.get(id).getDamageList().get(i);
                     }
@@ -249,12 +252,6 @@ public abstract class Attack {
         attack(our.getSlotSkill().get(choise));
         return true;
     }
-
-
-    public Attack(Hero our) {
-        this.our = our;
-    }
-
 
     public boolean manaCheck(int id) {
         return (our.getCurrentMp() - attackInfo.get(id).getManaCost()) > 0;

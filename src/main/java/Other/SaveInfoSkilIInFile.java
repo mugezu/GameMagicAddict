@@ -1,8 +1,8 @@
+package Other;
+
 import Attack.InfoSkill;
 import Attack.TypeAttack;
 import Attack.TypeBuffDebuff;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -17,10 +17,19 @@ public class SaveInfoSkilIInFile {
     List<ArrayList> typesAttack;
     List<ArrayList> typesEffect;
     List<InfoSkill> attackInfo = new ArrayList<>();
-    public static void main(String[] args) {
-new SaveInfoSkilIInFile().fillingInfoAttackMage();
+
+    public void allSaveSkillFile() {
+        String path = Global.currentPath + "\\AttackMage.bin";
+        if (!checkFile(path))
+            fillingInfoAttackMage(path);
     }
-    public  void fillingInfoAttackMage() {
+
+    private boolean checkFile(String Path) {
+        File tmp = new File(Path);
+        return tmp.exists();
+    }
+
+    private void fillingInfoAttackMage(String Path) {
         Random rand = new Random();
 
         Integer stroka[][] = {
@@ -81,23 +90,22 @@ new SaveInfoSkilIInFile().fillingInfoAttackMage();
         attackInfo.add(new InfoSkill(4, 4, "Лечение", "", 1, 27, damageLists.get(i), typesAttack.get(i++)));
         attackInfo.add(new InfoSkill(5, 4, "Подрезать сухожилье", "", 2, 30, damageLists.get(i), typesAttack.get(i), typesEffect.get(i++), 2));
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(attackInfo);
-        FileWriter FW = null;
+        ObjectOutputStream out = null;
         try {
-            FW = new FileWriter("D:\\AttackMage.txt",false);
-            FW.write(json);
+            out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(Path)));
+            out.writeObject(attackInfo);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (out != null)
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
         }
-        finally {
-            try {
-                if (FW!=null)
-                    FW.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
     }
 }
+
+
+

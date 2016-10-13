@@ -2,6 +2,7 @@ package Hesoes;
 
 import Attack.TypeBuffDebuff;
 import Battle.Fight;
+import Other.Global;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -21,7 +22,7 @@ public abstract class Hero implements Serializable {
     protected final int quantitySlotSkill = 6;
     protected String name = null;
     protected int step = 0;
-    protected int level = 55;
+    protected int level = 5;
     protected int hp = 100;
     protected int mp = 100;
     protected int armor = 10;
@@ -74,7 +75,7 @@ public abstract class Hero implements Serializable {
         String json = gson.toJson(this);
         FileWriter FW = null;
         try {
-            FW = new FileWriter("D:\\Save.txt", false);
+            FW = new FileWriter(Global.currentPath+"\\Save.txt", false);
             FW.write(json);
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,7 +96,7 @@ public abstract class Hero implements Serializable {
         FileReader FR = null;
         int c;
         try {
-            FR = new FileReader("D:\\Save.txt");
+            FR = new FileReader(Global.currentPath+"\\Save.txt");
             while ((c = FR.read()) != -1) {
                 builder.append((char) c);
             }
